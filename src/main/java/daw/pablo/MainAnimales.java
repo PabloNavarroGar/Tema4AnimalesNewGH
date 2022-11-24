@@ -11,7 +11,7 @@ package daw.pablo;
 public class MainAnimales {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Hola pablo has hecho bien el commit con las version 22 de smartgit");
 
         Animal a1 = new Animal("Landi", "Perro", 20000, "Durmiendo", "11/05/2019");
 
