@@ -20,7 +20,7 @@ public class Animal {
     private String nombre;
     private String tipoAnimal;// "gato", "perro", "lagarto", "cobaya", "periquito"
     private double peso;
-    private String estado; //"comiendo", "durmiendo", "despierto/reposo" o "jugando".
+    private EstadoAnimal estado; //"comiendo", "durmiendo", "despierto/reposo" o "jugando".
 
     //Pasar fechas a String 
     private DateTimeFormatter formatofechas = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -30,14 +30,14 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(String nombre, String tipoAnimal, double peso, String estado, String fecha) {
+    public Animal(String nombre, String tipoAnimal, double peso, EstadoAnimal estado, String fecha) {
         this.nombre = nombre;
         //Ternario para filtrar
         this.tipoAnimal = tipoAnimal.equalsIgnoreCase("perro") ||
                 tipoAnimal.equalsIgnoreCase("gato") ||
                 tipoAnimal.equalsIgnoreCase("lagarto")? tipoAnimal  :null;
         this.peso = peso;
-        this.estado = estado;
+        this.estado = EstadoAnimal;
         this.fechaNacimiento = fecha;
     }
 
@@ -117,7 +117,7 @@ public class Animal {
 
     public void dormir() {
 
-        this.estado = "A dormir";
+        this.estado = EstadoAnimal.DURMIENDO;
     }
 
     public void despertar() {

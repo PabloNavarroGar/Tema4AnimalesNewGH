@@ -17,8 +17,12 @@ public class VicoApuntesTest {
         // TODO code application logic here
         //Pilla el objeto 
         EstadoAnimal estadoPerro = EstadoAnimal.COMIENDO;
+               
+
+        
         System.out.println("El estado del perro con el codigo es"+estadoPerro.getCodigoEstado());
-        System.out.println("Estaro del perro en la descripcion"+estadoPerro.getEstado());
+        
+        System.out.println("Estado del perro en la descripcion"+estadoPerro.getEstado());
     }
     
 }

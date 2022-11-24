@@ -67,7 +67,9 @@ public class MainAnimales {
         System.out.println(a1.getPeso());
         
         
-       
+        
+        
+        EstadoAnimal estadoA1 = EstadoAnimal.COMIENDO;
         
     }
 }
