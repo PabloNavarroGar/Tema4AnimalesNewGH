@@ -22,12 +22,9 @@ public class Animal {
     private double peso;
     private String estado; //"comiendo", "durmiendo", "despierto/reposo" o "jugando".
 
-//FORMATEAR LAS FECHAS 
-    //dd dias con dos numeritos
-    //mm mes con 2  numeritos
-    //yyyy año
+    //Pasar fechas a String 
     private DateTimeFormatter formatofechas = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+    //String que llevara el constructor
     private String fechaNacimiento = fechaHoy.format(formatofechas);
 
     public Animal() {
@@ -35,7 +32,10 @@ public class Animal {
 
     public Animal(String nombre, String tipoAnimal, double peso, String estado, String fecha) {
         this.nombre = nombre;
-        this.tipoAnimal = tipoAnimal;
+        //Ternario para filtrar
+        this.tipoAnimal = tipoAnimal.equalsIgnoreCase("perro") ||
+                tipoAnimal.equalsIgnoreCase("gato") ||
+                tipoAnimal.equalsIgnoreCase("lagarto")? tipoAnimal  :null;
         this.peso = peso;
         this.estado = estado;
         this.fechaNacimiento = fecha;
@@ -107,61 +107,76 @@ public class Animal {
                 + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
 
-    public static void comer(Animal pet, double cantidadGramos) {
+    public void comer(Animal pet, double cantidadGramos) {
         //Se suma en el peso, la cantidad que su peso+ mas la cantida de comida que recibira
         //No admite negativo
         cantidadGramos = Math.abs(cantidadGramos);
-        pet.setPeso(pet.getPeso() + cantidadGramos);
+        this.peso += cantidadGramos;
 
     }
 
-    public static void dormir(Animal pet) {
+    public void dormir() {
 
-        pet.setEstado("dormir");
+        this.estado = "A dormir";
     }
 
-    public static void despertar(Animal pet) {
+    public void despertar() {
 
-        pet.setEstado("despierto");
+        this.estado = "Despierta!!!!";
     }
 
-    public static void descansar(Animal pet) {
+    public void descansar() {
 
-        pet.setEstado("reposo");
+        this.estado = "a descansar";
 
     }
 
-    public static void jugar(Animal pet, int cantidadMinutos) {
-        
-        try {
+    public void jugar(Animal pet, int cantidadMinutos) {
 
-            pet.setEstado(pet.getNombre() + ", esta jugando");
+        cantidadMinutos = Math.abs(cantidadMinutos);
+
+        if (cantidadMinutos > 180) {
+            throw new IllegalArgumentException();//expecion
+        } else {
+           
+            this.estado ="esta jugando!!!";
             if (cantidadMinutos >= Math.abs(30)) {
-                pet.setPeso(pet.getPeso() - 20);
+                this.peso -= 20;
 
-            } else if (cantidadMinutos > Math.abs(60)) {
-                pet.setPeso(pet.getPeso() - 40);
-            } else if (cantidadMinutos > Math.abs(90)) {
+            } else if (cantidadMinutos < Math.abs(60)) {
+                this.peso -= 40;
 
-                pet.setPeso(pet.getPeso() - 60);
-            } else if (cantidadMinutos > Math.abs(120)) {
-                pet.setPeso(pet.getPeso() - 80);
-            } else if (cantidadMinutos > Math.abs(150)) {
-                pet.setPeso(pet.getPeso() - 100);
+            } else if (cantidadMinutos < Math.abs(90)) {
 
-            } else if (cantidadMinutos <= Math.abs(180)) {
-                pet.setPeso(pet.getPeso() - 120);
+                this.peso -= 60;
+
+            } else if (cantidadMinutos < Math.abs(120)) {
+                this.peso -= 80;
+
+            } else if (cantidadMinutos < Math.abs(150)) {
+                this.peso -= 100;
+
+            } else if (cantidadMinutos < Math.abs(180)){
+                
+                this.peso -= 120;
             }
-
-        } catch (IllegalArgumentException npe) {
-            if (cantidadMinutos > Math.abs(180)) {
-                throw new IllegalArgumentException();//expecion
-            }
-            System.out.println("No puede ser mas de 180 minutos");
         }
 
     }
-        //Metodo de copiar pero con un contructor, no lo puede asim la otra forma es la correcta pero para repasar
+
+    public static Animal clonar(Animal pet) {
+        //Metodo para copiar datos
+        Animal aux = new Animal();
+        if (pet != null) {
+            aux = new Animal(pet.nombre, pet.tipoAnimal, pet.peso, pet.estado, pet.fechaNacimiento);
+        } else {
+            throw new NullPointerException("Datos en nulo,no se puede copiar");
+        }
+        return aux;
+    }
+    
+    
+    //Metodo de copiar pero con un contructor, no lo puede asim la otra forma es la correcta pero para repasar
 //    public static Animal clonar(Animal pet) {
 //        Animal copiarAnimal = new Animal();
 //        try {
@@ -181,13 +196,4 @@ public class Animal {
 //        this.estado = origen.estado;
 //        this.fechaNacimiento = origen.fechaNacimiento;
 //    }
-    public static Animal clonar(Animal pet) {
-        Animal aux;
-        if (pet != null) {
-            aux = new Animal(pet.nombre, pet.tipoAnimal, pet.peso, pet.estado, pet.fechaNacimiento);
-        } else {
-            throw new NullPointerException("Datos en nulo,no se puede");
-        }
-        return aux;
-    }
 }

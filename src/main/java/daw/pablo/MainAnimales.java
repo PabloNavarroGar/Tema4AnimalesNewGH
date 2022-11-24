@@ -21,22 +21,26 @@ public class MainAnimales {
 
         //CLONACION DE ANIMAL
         //Se declara el objeto a3= animal 3
+        System.out.println("-------------Clonacion------------------");
         Animal a3 = new Animal();
+        System.out.println("Animal a3 vacio , a falta de poner la clonacion");
+        System.out.println(a3);
         //Se llama al metodo de clonar con origen del a2= animal 2
         a3= Animal.clonar(a2);
          
         System.out.println("ANIMAL 3 COPIADO CON LOS DATOS DEL ANIMAL 2");
         System.out.println("----------------------------");
         System.out.println(a3);
-        System.out.println("--------------------");
+        System.out.println("----------------------------");
         //Personas
+        System.out.println("-------------Personas....................");
         Persona p1 = new Persona("Pablo", 25);
 
         Persona p2 = new Persona("Samuel", 31);
 
         System.out.println(p1);
         System.out.println(p2);
-
+        System.out.println("-----------Interaccion con Persona-------------");
         //p1 debe despertar a todos los animales.
         p1.llamar(a1);
         p1.llamar(a2);
@@ -61,6 +65,9 @@ public class MainAnimales {
         p1.jugar(a1, 120);//con mas 180 salta la expecion
        
         System.out.println(a1.getPeso());
+        
+        
+       
         
     }
 }

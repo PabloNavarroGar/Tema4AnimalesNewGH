@@ -52,23 +52,18 @@ public class Persona {
     //QUITAR LOS STATIC PARA PODER USARLOS EN EL MAIN
     public void alimentar(Animal pet, double cantidadGramos) {
         
-        Animal.comer(pet, cantidadGramos);
+        pet.comer(pet, cantidadGramos);
     }
     
     public void jugar(Animal pet, int cantidadMinutos) {
+        cantidadMinutos= Math.abs(cantidadMinutos);
         try {
-             Animal.jugar(pet, cantidadMinutos);
-            if (cantidadMinutos <= 180) {
-              
-                pet.setEstado(pet.getNombre() + " , jugando con la "+getNombre());
-                
-            } else {
-                throw new IllegalArgumentException();//expecion
-            }
+             pet.jugar(pet, cantidadMinutos);
+         
         } catch (IllegalArgumentException ime) {
             
             System.out.println("El tiempo maximo es 180 como permitido, por lo cual se pondra a 180");
-            cantidadMinutos = 180;
+            pet.jugar(pet, 180);
         }
     }
     
