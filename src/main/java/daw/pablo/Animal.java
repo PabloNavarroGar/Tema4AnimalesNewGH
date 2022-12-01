@@ -37,7 +37,7 @@ public class Animal {
                 tipoAnimal.equalsIgnoreCase("gato") ||
                 tipoAnimal.equalsIgnoreCase("lagarto")? tipoAnimal  :null;
         this.peso = peso;
-        this.estado = EstadoAnimal;
+        this.estado = estado;
         this.fechaNacimiento = fecha;
     }
 
